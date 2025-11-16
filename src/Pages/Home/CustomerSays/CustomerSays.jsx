@@ -8,7 +8,7 @@ const CustomerSays = () => {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-secondary ">
+        <h2 className=" text-3xl lg:text-4xl font-bold text-secondary ">
           What our customers are sayings
         </h2>
         <small className="text-gray-600">

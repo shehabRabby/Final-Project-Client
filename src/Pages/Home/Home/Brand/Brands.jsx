@@ -15,7 +15,7 @@ const brandLogo = [img1, img2, img3, img4, img5, img6, img7];
 const Brands = () => {
   return (
     <Swiper
-      slidesPerView={4}
+      slidesPerView={3}
       centeredSlides={true}
       spaceBetween={10}
       grabCursor={true}
