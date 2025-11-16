@@ -6,6 +6,7 @@ import Shipping from '../Shipping/Shipping';
 import StaisfictionCard from '../CustomerStaisfiction/StaisfictionCard';
 import CustomerSays from '../CustomerSays/CustomerSays';
 import Question from '../Question/Question';
+import Brands from './Brand/Brands';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
            <Banner></Banner>
            <HowWorks></HowWorks>
            <OuerServices></OuerServices>
+           <Brands></Brands>
            <Shipping></Shipping>
            <StaisfictionCard></StaisfictionCard>
            <CustomerSays></CustomerSays>
