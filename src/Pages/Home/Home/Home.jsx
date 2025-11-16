@@ -4,6 +4,8 @@ import HowWorks from '../HowWorks/HowWorks';
 import OuerServices from '../OurServices/OuerServices';
 import Shipping from '../Shipping/Shipping';
 import StaisfictionCard from '../CustomerStaisfiction/StaisfictionCard';
+import CustomerSays from '../CustomerSays/CustomerSays';
+import Question from '../Question/Question';
 
 const Home = () => {
     return (
@@ -13,6 +15,8 @@ const Home = () => {
            <OuerServices></OuerServices>
            <Shipping></Shipping>
            <StaisfictionCard></StaisfictionCard>
+           <CustomerSays></CustomerSays>
+           <Question></Question>
         </div>
     );
 };

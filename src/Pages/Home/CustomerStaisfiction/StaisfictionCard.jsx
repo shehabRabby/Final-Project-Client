@@ -13,8 +13,8 @@ const StaisfictionCard = () => {
       Merchant and Customer Satisfaction <br /> is Our First Priority
     </h1>
     <small className="text-gray-400 block mt-2 sm:mt-3 md:mt-4 leading-relaxed">
-      We offer the lowest delivery charge with the highest value along with <br /> 
-      100% safety of your product. Pathao courier delivers your parcels in every <br /> 
+      We offer the lowest delivery charge with the highest value along with <br className=" hidden lg:block" />
+      100% safety of your product. Pathao courier delivers your parcels in every <br className=" hidden lg:block" />
       corner of Bangladesh right on time.
     </small>
 

@@ -8,7 +8,7 @@ const OuerServices = () => {
         <h2 className="text-2xl font-bold text-white "> Our Services</h2>
         <small className="text-gray-300">
           Enjoy fast, reliable parcel delivery with real-time tracking and zero
-          hassle. From personal packages to <br /> business shipments — we
+          hassle. From personal packages to <br className=" hidden lg:block" /> business shipments — we
           deliver on time, every time.
         </small>
       </div>

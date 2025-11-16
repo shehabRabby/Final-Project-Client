@@ -10,7 +10,7 @@ const Banner = () => {
   return (
     <Carousel
       interval={2000}
-      autoPlay={false}
+      autoPlay={true}
       infiniteLoop={true}
       className="mt-3"
     >
