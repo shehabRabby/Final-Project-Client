@@ -12,7 +12,7 @@ const OuerServices = () => {
           deliver on time, every time.
         </small>
       </div>
-   <OurServiceCard></OurServiceCard>
+      <OurServiceCard></OurServiceCard>
     </div>
   );
 };
