@@ -29,7 +29,7 @@ const Register = () => {
         <label className="label">Password</label>
         <input
           type="password"
-          {...register("password" ,{ required: true, minLength: 6,})}
+          {...register("password", { required: true, minLength: 6 })}
           className="input"
           placeholder="Password"
         />
