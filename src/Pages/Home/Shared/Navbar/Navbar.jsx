@@ -24,6 +24,9 @@ const Navbar = () => {
         <NavLink to="/coverage">Coverage</NavLink>
       </li>
       <li>
+        <NavLink to="/send-parcel">Send Parcel</NavLink>
+      </li>
+      <li>
         <NavLink to="">About Us</NavLink>
       </li>
     </>
@@ -71,7 +74,7 @@ const Navbar = () => {
             Login
           </Link>
         )}
-        <Link to="/beaRider" className="btn bg-primary text-secondary mx-4">
+        <Link to="/rider" className="btn bg-primary text-secondary mx-4">
           Be a Rider
         </Link>
       </div>
