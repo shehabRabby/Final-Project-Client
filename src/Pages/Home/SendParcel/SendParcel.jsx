@@ -13,7 +13,7 @@ const SendParcel = () => {
     formState: { errors },
   } = useForm();
 
-  const {}= useAuth();
+  const {user}= useAuth();
   const axiosSecure = useAxiosSecure();
 
   const serviceCenters = useLoaderData();
@@ -64,12 +64,11 @@ const SendParcel = () => {
         axiosSecure.post("/parcels", data).then((res) => {
           console.log("After saving data", res.data);
         });
-
-        // Swal.fire({
-        //   title: "Added",
-        //   text: "Your file has been deleted.",
-        //   icon: "success",
-        // });
+        Swal.fire({
+          title: "Added",
+          text: "Your Parcel has been Recorded.",
+          icon: "success",
+        });
       }
     });
   };
@@ -154,6 +153,7 @@ const SendParcel = () => {
               type="text"
               {...register("senderName")}
               className="input w-full"
+              defaultValue={user?.displayName}
               placeholder="Enter name"
             />
             {/* sender Email  */}
@@ -164,6 +164,7 @@ const SendParcel = () => {
               type="text"
               {...register("senderEmail")}
               className="input w-full"
+              defaultValue={user?.email}
               placeholder="Enter mail"
             />
             {/* sender address  */}
