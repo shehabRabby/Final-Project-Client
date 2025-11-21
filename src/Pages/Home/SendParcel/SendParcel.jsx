@@ -49,6 +49,7 @@ const SendParcel = () => {
       }
     }
     console.log("total Cost :", cost);
+    data.cost = cost;
     // sweet alert
     Swal.fire({
       title: "Agree with the cost?",
