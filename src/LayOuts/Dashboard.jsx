@@ -4,17 +4,53 @@ import { Link, NavLink, Outlet } from "react-router";
 
 const Dashboard = () => {
   return (
-    <div className="drawer lg:drawer-open max-w-7xl mx-auto bg-emerald-400 px-5">
-      <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
-        {/* Navbar */}
-        <nav className="navbar w-full bg-white">
-          <label
-            htmlFor="my-drawer-4"
-            aria-label="open sidebar"
-            className="btn btn-square btn-ghost"
+<div className="drawer lg:drawer-open max-w-7xl mx-auto bg-emerald-50 px-4">
+  <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+
+  {/* Main Content */}
+  <div className="drawer-content flex flex-col min-h-screen">
+    {/* Navbar */}
+    <nav className="navbar w-full bg-gradient-to-r from-lime-400 to-emerald-500 text-white shadow-md rounded-b-lg">
+      <label
+        htmlFor="my-drawer-4"
+        aria-label="open sidebar"
+        className="btn btn-square btn-ghost lg:hidden"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          strokeWidth="2"
+          fill="none"
+          stroke="currentColor"
+          className="inline-block w-6 h-6"
+        >
+          <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+          <path d="M9 4v16"></path>
+          <path d="M14 10l2 2l-2 2"></path>
+        </svg>
+      </label>
+      <div className="px-4 text-xl font-bold">Zap Shift Dashboard</div>
+    </nav>
+
+    {/* Page content */}
+    <div className="flex-1 p-4 bg-gray-50">
+      <Outlet />
+    </div>
+  </div>
+
+  {/* Sidebar */}
+  <div className="drawer-side">
+    <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+    <div className="flex flex-col min-h-full w-64 bg-white shadow-lg rounded-r-lg">
+      <ul className="menu p-4 w-full space-y-2">
+        {/* Home */}
+        <li>
+          <Link
+            to="/"
+            className="flex items-center gap-3 p-2 rounded-lg hover:bg-emerald-100 transition-colors"
           >
-            {/* Sidebar toggle icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -23,97 +59,52 @@ const Dashboard = () => {
               strokeWidth="2"
               fill="none"
               stroke="currentColor"
-              className="my-1.5 inline-block size-6 text-lime-600"
+              className="w-6 h-6 text-lime-600"
             >
-              <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
-              <path d="M9 4v16"></path>
-              <path d="M14 10l2 2l-2 2"></path>
+              <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+              <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             </svg>
-          </label>
-          <div className="px-4 text-l font-bold ">Zap Shift Dashboard</div>
-        </nav>
-        {/* Page content here */}
-        <Outlet></Outlet>
-      </div>
+            <span>Home Page</span>
+          </Link>
+        </li>
 
-      <div className="drawer-side is-drawer-close:overflow-visible">
-        <label
-          htmlFor="my-drawer-4"
-          aria-label="close sidebar"
-          className="drawer-overlay"
-        ></label>
-        <div className="flex min-h-full flex-col items-start bg-white is-drawer-close:w-14 is-drawer-open:w-64">
-          {/* Sidebar content here */}
-          <ul className="menu w-full grow">
-            {/* List item */}
-            <li>
-              <Link
-                to="/"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Homepage"
-              >
-                {/* Home icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-6 text-lime-600"
-                >
-                  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-                  <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                </svg>
-                <span className="is-drawer-close:hidden">Home Page</span>
-              </Link>
-            </li>
+        {/* My Parcels */}
+        <li>
+          <NavLink
+            to="/dashboard/my-parcels"
+            className="flex items-center gap-3 p-2 rounded-lg hover:bg-emerald-100 transition-colors"
+          >
+            <CiDeliveryTruck size={30} className="text-red-600" />
+            <span>My Parcels</span>
+          </NavLink>
+        </li>
 
-            {/* our dashboard links */}
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="MyParcels"
-                to="/dashboard/my-parcels"
-              >
-                <CiDeliveryTruck
-                  size={30}
-                  className="text-red-600"
-                ></CiDeliveryTruck>
-                <span className="is-drawer-close:hidden">My Parcels</span>
-              </NavLink>
-            </li>
-
-            {/* List item */}
-            <li>
-              <button
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Settings"
-              >
-                {/* Settings icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-6 text-red-500"
-                >
-                  <path d="M20 7h-9"></path>
-                  <path d="M14 17H5"></path>
-                  <circle cx="17" cy="17" r="3"></circle>
-                  <circle cx="7" cy="7" r="3"></circle>
-                </svg>
-                <span className="is-drawer-close:hidden">Settings</span>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
+        {/* Settings */}
+        <li>
+          <button className="flex items-center gap-3 p-2 rounded-lg hover:bg-emerald-100 transition-colors w-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2"
+              fill="none"
+              stroke="currentColor"
+              className="w-6 h-6 text-red-500"
+            >
+              <path d="M20 7h-9"></path>
+              <path d="M14 17H5"></path>
+              <circle cx="17" cy="17" r="3"></circle>
+              <circle cx="7" cy="7" r="3"></circle>
+            </svg>
+            <span>Settings</span>
+          </button>
+        </li>
+      </ul>
     </div>
+  </div>
+</div>
+
   );
 };
 
