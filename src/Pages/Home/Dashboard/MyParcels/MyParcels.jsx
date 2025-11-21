@@ -18,6 +18,18 @@ const MyParcels = () => {
       return res.data;
     },
   });
+
+  const handlePayment = async (parcel) => {
+    const paymentInfo = {
+      cost: parcel.cost,
+      parcelId: parcel._id,
+      senderEmail: parcel.senderEmail,
+      parcelName: parcel.parcelName,
+    };
+    const res = await axiosSecure.post("/payment-checkout-session", paymentInfo);
+    window.location.href = res.data.url;
+  };
+
   const handleParcelDelete = (id) => {
     console.log(id);
 
@@ -79,24 +91,22 @@ const MyParcels = () => {
                 <td className="px-4 py-2">{i + 1}</td>
                 <td className="px-4 py-2 font-medium">{parcel.parcelName}</td>
                 <td className="px-4 py-2">{parcel.cost}</td>
-              
-               {/* Payment Status */}
-               <td className="px-4 py-2 text-center">
-                 {
-                 parcel.paymentStatus === "paid" ? (
-                   <span className="text-green-600 font-semibold bg-green-100 px-3 py-1  text-sm btn-sm">
-                     Paid
-                   </span>
-                 ) : (
-                   <Link to={`/dashboard/payment/${parcel._id}`}>
-                     <button className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-white px-3 py-1  text-sm transition btn-sm">
-                       Pay
-                     </button>
-                   </Link>
-                 )
-                 
-                 }
-               </td>
+
+                {/* Payment Status */}
+                <td className="px-4 py-2 text-center">
+                  {parcel.paymentStatus === "paid" ? (
+                    <span className="text-green-600 font-semibold bg-green-100 px-3 py-1  text-sm btn-sm">
+                      Paid
+                    </span>
+                  ) : (
+                    <button
+                      onClick={() => handlePayment(parcel)}
+                      className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-white px-3 py-1  text-sm transition btn-sm"
+                    >
+                      Pay
+                    </button>
+                  )}
+                </td>
 
                 <td className="px-4 py-2 flex gap-2">
                   <button className="btn btn-square hover:bg-lime-300 transition">
