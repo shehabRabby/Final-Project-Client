@@ -81,277 +81,172 @@ const SendParcel = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-5xl font-bold mt-10 text-center">Send A Parcel</h2>
-      <div className="text-center">
-        ---------------------------------------------------------------------
+    <div className="px-4 md:px-12 py-10 bg-black min-h-screen">
+  {/* TITLE */}
+  <h2
+    className="text-center text-5xl font-extrabold tracking-wide 
+               bg-gradient-to-r from-lime-400 via-green-500 to-lime-300 
+               bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(132,255,132,0.8)]"
+  >
+    Send A Parcel
+  </h2>
+
+  <div className="text-center text-gray-500 mt-1 mb-10">
+    ---------------------------------------------------------------
+  </div>
+
+  {/* FORM CARD */}
+  <form
+    onSubmit={handleSubmit(handleSendParcel)}
+    className="mx-auto max-w-6xl backdrop-blur-2xl bg-black/40
+               border border-lime-400/40
+               shadow-[0_0_50px_rgba(0,255,60,0.5)]
+               rounded-3xl p-8 md:p-12
+               grid gap-10"
+  >
+    {/* SUBHEADER */}
+    <h3
+      className="text-2xl md:text-3xl font-semibold mb-8 
+                 bg-gradient-to-r from-green-400 to-lime-400 
+                 bg-clip-text text-transparent drop-shadow-md text-center"
+    >
+      Enter Your Parcel Details
+    </h3>
+
+    {/* DOCUMENT TYPE */}
+    <div className="flex gap-8 justify-center mb-10">
+      {["document", "non-document"].map((type) => (
+        <label key={type} className="flex items-center gap-2 text-lime-400 font-semibold">
+          <input
+            type="radio"
+            {...register("parcelType")}
+            value={type}
+            defaultChecked={type === "document"}
+            className="radio radio-success"
+          />
+          {type.charAt(0).toUpperCase() + type.slice(1)}
+        </label>
+      ))}
+    </div>
+
+    {/* PARCEL INFO */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <label className="text-lg font-semibold text-lime-300">Parcel Name</label>
+        <input
+          {...register("parcelName")}
+          className="input w-full bg-black/70 text-white border border-lime-400/50 rounded-xl
+                 shadow-sm focus:shadow-[0_0_12px_rgba(0,255,60,0.6)]
+                 focus:border-lime-500 transition-all"
+          placeholder="Parcel name"
+        />
       </div>
 
-      <form
-        onSubmit={handleSubmit(handleSendParcel)}
-        className="my-8 p-6 bg-lime-300 drop-shadow-xl"
-      >
-        <h3 className="text-2xl font-semibold mb-5">
-          Enter your parcel details
-        </h3>
-        {/* document type */}
-        <div>
-          <label className="label mr-4 text-secondary">
-            <input
-              type="radio"
-              {...register("parcelType")}
-              value="document"
-              className="radio"
-              defaultChecked
-            />
-            Document
-          </label>
-
-          <label className="label text-secondary">
-            <input
-              type="radio"
-              {...register("parcelType")}
-              value="non-document"
-              className="radio"
-            />
-            Non-Document
-          </label>
-        </div>
-
-        {/* parcelinfo  */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-8">
-          <fieldset className="fieldset">
-            <label className="label text-secondary font-semibold text-lg">
-              Parcel Name
-            </label>
-            <input
-              type="text"
-              {...register("parcelName")}
-              className="input w-full"
-              placeholder="Parcel name"
-            />
-          </fieldset>
-          <fieldset className="fieldset">
-            <label className="label text-secondary font-semibold text-lg">
-              Parcel Weight (kg)
-            </label>
-            <input
-              type="number"
-              {...register("parcelWeight")}
-              className="input w-full"
-              placeholder="Parcel Weight"
-            />
-          </fieldset>
-        </div>
-
-        {/* Sender Receiver Details  */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* sender info  */}
-
-          <fieldset className="fieldset mb-2">
-            <h3 className="text-2xl font-extrabold mb-4 text-secondary">
-              Sender Details
-            </h3>
-            {/* sender name  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Sender Name
-            </label>
-            <input
-              type="text"
-              {...register("senderName")}
-              className="input w-full"
-              defaultValue={user?.displayName}
-              placeholder="Enter name"
-            />
-            {/* sender Email  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Sender Email
-            </label>
-            <input
-              type="text"
-              {...register("senderEmail")}
-              className="input w-full"
-              defaultValue={user?.email}
-              placeholder="Enter mail"
-            />
-            {/* sender address  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Sender Address
-            </label>
-            <input
-              type="text"
-              {...register("senderAddress")}
-              className="input w-full"
-              placeholder="Enter Address"
-            />
-
-            {/* Sender Region  */}
-            <fieldset className="fieldset ">
-              <legend className="fieldset-legend text-secondary font-semibold text-lg">
-                Sender Regions
-              </legend>
-              <select
-                {...register("senderRegion")}
-                defaultValue="Pick a region"
-                className="select w-full"
-              >
-                <option disabled={true}>Pick a region</option>
-                {regions.map((r, i) => (
-                  <option key={i} value={r}>
-                    {r}
-                  </option>
-                ))}
-              </select>
-            </fieldset>
-
-            {/* Sender Districts */}
-            <fieldset className="fieldset ">
-              <legend className="fieldset-legend text-secondary font-semibold text-lg">
-                Sender Districts
-              </legend>
-              <select
-                {...register("senderDistrict")}
-                defaultValue="Pick a districts"
-                className="select w-full"
-              >
-                <option disabled={true}>Pick a Districts</option>
-                {districtByRegions(senderRegion).map((r, i) => (
-                  <option key={i} value={r}>
-                    {r}
-                  </option>
-                ))}
-              </select>
-            </fieldset>
-
-            {/* sender Phone No  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Sender Phone No
-            </label>
-            <input
-              type="text"
-              {...register("senderPhone")}
-              className="input w-full"
-              placeholder="Enter Phone"
-            />
-            {/* Pickup Instruction  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Pickup Instruction
-            </label>
-            <textarea
-              type="text"
-              {...register("instructionSender")}
-              className="input w-full p-3 h-30"
-              rows="5"
-              placeholder="Enter instruction......"
-            />
-          </fieldset>
-
-          {/* receiver info  */}
-
-          <fieldset className="fieldset mb-2">
-            <h3 className="text-2xl font-extrabold mb-4 text-secondary">
-              Receiver Details
-            </h3>
-            {/* Receiver name  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Receiver Name
-            </label>
-            <input
-              type="text"
-              {...register("receiverName")}
-              className="input w-full"
-              placeholder="Enter name"
-            />
-            {/* Receiver Email  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Receiver Email
-            </label>
-            <input
-              type="text"
-              {...register("receiverEmail")}
-              className="input w-full"
-              placeholder="Enter email"
-            />
-            {/* Receiver address  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Receiver Address
-            </label>
-            <input
-              type="text"
-              {...register("receiverAddress")}
-              className="input w-full"
-              placeholder="Enter Address"
-            />
-
-            {/* Receiver Region  */}
-            <fieldset className="fieldset ">
-              <legend className="fieldset-legend text-secondary font-semibold text-lg">
-                Receiver Regions
-              </legend>
-              <select
-                {...register("receiverRegion")}
-                defaultValue="Pick a region"
-                className="select w-full"
-              >
-                <option disabled={true}>Pick a region</option>
-                {regions.map((r, i) => (
-                  <option key={i} value={r}>
-                    {r}
-                  </option>
-                ))}
-              </select>
-            </fieldset>
-
-            {/* Receiver Districts */}
-            <fieldset className="fieldset ">
-              <legend className="fieldset-legend text-secondary font-semibold text-lg">
-                Receiver Districts
-              </legend>
-              <select
-                {...register("receiverDistrict")}
-                defaultValue="Pick a districts"
-                className="select w-full"
-              >
-                <option disabled={true}>Pick a Districts</option>
-                {districtByRegions(receiverRegion).map((d, i) => (
-                  <option key={i} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-            </fieldset>
-
-            {/* Receiver Phone No  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Receiver Phone No
-            </label>
-            <input
-              type="text"
-              {...register("receiverPhone")}
-              className="input w-full"
-              placeholder="Receiver Phone"
-            />
-            {/* Pickup Instruction  */}
-            <label className="label text-secondary font-semibold text-lg">
-              Pickup Instruction
-            </label>
-            <textarea
-              type="text"
-              {...register("instructionReceiver")}
-              className="input w-full p-3 h-30"
-              rows="5"
-              placeholder="Enter instruction......"
-            />
-          </fieldset>
-        </div>
-
+      <div>
+        <label className="text-lg font-semibold text-lime-300">Parcel Weight (kg)</label>
         <input
-          type="submit"
-          className="text-black btn  bg-green-500"
-          value="send parcel"
+          {...register("parcelWeight")}
+          type="number"
+          className="input w-full bg-black/70 text-white border border-lime-400/50 rounded-xl
+                 shadow-sm focus:shadow-[0_0_12px_rgba(0,255,60,0.6)]
+                 focus:border-lime-500 transition-all"
+          placeholder="Parcel weight"
         />
-      </form>
+      </div>
     </div>
+
+    {/* SENDER + RECEIVER */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+      {/* SENDER CARD */}
+      <fieldset className="p-6 rounded-2xl border border-lime-400/40 bg-black/50 backdrop-blur-xl shadow-lg">
+        <h3 className="text-2xl font-bold mb-5 bg-gradient-to-r from-green-400 to-lime-300 bg-clip-text text-transparent">
+          Sender Details
+        </h3>
+        {/* Sender Inputs */}
+        {["Name", "Email", "Address", "Phone"].map((field) => (
+          <div key={field} className="mb-3">
+            <label className="text-lime-300 font-semibold">{`Sender ${field}`}</label>
+            <input
+              {...register(`sender${field}`)}
+              defaultValue={field === "Name" ? user?.displayName : field === "Email" ? user?.email : ""}
+              className="input w-full bg-black/70 text-white border border-lime-400/50 rounded-xl"
+            />
+          </div>
+        ))}
+
+        {/* Region & District */}
+        <label className="text-lime-300 font-semibold">Sender Region</label>
+        <select {...register("senderRegion")} className="select w-full mb-3 bg-black/70 text-white border border-lime-400/50 rounded-xl">
+          <option disabled>Pick a region</option>
+          {regions.map((r, i) => <option key={i} value={r}>{r}</option>)}
+        </select>
+
+        <label className="text-lime-300 font-semibold">Sender District</label>
+        <select {...register("senderDistrict")} className="select w-full mb-3 bg-black/70 text-white border border-lime-400/50 rounded-xl">
+          <option disabled>Pick a district</option>
+          {districtByRegions(senderRegion).map((d, i) => <option key={i} value={d}>{d}</option>)}
+        </select>
+
+        <label className="text-lime-300 font-semibold">Pickup Instruction</label>
+        <textarea
+          {...register("instructionSender")}
+          rows="4"
+          className="textarea w-full bg-black/70 text-white border border-lime-400/50 rounded-xl"
+        />
+      </fieldset>
+
+      {/* RECEIVER CARD */}
+      <fieldset className="p-6 rounded-2xl border border-lime-400/40 bg-black/50 backdrop-blur-xl shadow-lg">
+        <h3 className="text-2xl font-bold mb-5 bg-gradient-to-r from-green-400 to-lime-300 bg-clip-text text-transparent">
+          Receiver Details
+        </h3>
+        {/* Receiver Inputs */}
+        {["Name", "Email", "Address", "Phone"].map((field) => (
+          <div key={field} className="mb-3">
+            <label className="text-lime-300 font-semibold">{`Receiver ${field}`}</label>
+            <input
+              {...register(`receiver${field}`)}
+              className="input w-full bg-black/70 text-white border border-lime-400/50 rounded-xl"
+            />
+          </div>
+        ))}
+
+        <label className="text-lime-300 font-semibold">Receiver Region</label>
+        <select {...register("receiverRegion")} className="select w-full mb-3 bg-black/70 text-white border border-lime-400/50 rounded-xl">
+          <option disabled>Pick a region</option>
+          {regions.map((r, i) => <option key={i} value={r}>{r}</option>)}
+        </select>
+
+        <label className="text-lime-300 font-semibold">Receiver District</label>
+        <select {...register("receiverDistrict")} className="select w-full mb-3 bg-black/70 text-white border border-lime-400/50 rounded-xl">
+          <option disabled>Pick a district</option>
+          {districtByRegions(receiverRegion).map((d, i) => <option key={i} value={d}>{d}</option>)}
+        </select>
+
+        <label className="text-lime-300 font-semibold">Pickup Instruction</label>
+        <textarea
+          {...register("instructionReceiver")}
+          rows="4"
+          className="textarea w-full bg-black/70 text-white border border-lime-400/50 rounded-xl"
+        />
+      </fieldset>
+    </div>
+
+    {/* SUBMIT */}
+    <button
+      type="submit"
+      className="mt-10 w-full md:w-auto px-10 py-3 rounded-xl 
+                 font-bold text-black text-lg
+                 bg-gradient-to-r from-green-500 to-lime-400
+                 shadow-[0_0_25px_rgba(0,255,100,0.6)]
+                 hover:shadow-[0_0_40px_rgba(0,255,100,0.9)]
+                 transition-all duration-300 mx-auto block"
+    >
+      Send Parcel
+    </button>
+  </form>
+</div>
+
   );
 };
 

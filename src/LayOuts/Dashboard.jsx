@@ -1,6 +1,6 @@
 import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { FaRegCreditCard } from "react-icons/fa";
+import { FaMotorcycle, FaRegCreditCard } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 
 const Dashboard = () => {
@@ -86,6 +86,15 @@ const Dashboard = () => {
               >
                 <FaRegCreditCard size={30} className="text-red-600" />
                 <span>Payment History</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/approve-riders"
+                className="flex items-center gap-3 p-2 rounded-lg hover:bg-emerald-100 transition-colors"
+              >
+                <FaMotorcycle size={30} className="text-red-600" />
+                <span>Approve Riders</span>
               </NavLink>
             </li>
 
