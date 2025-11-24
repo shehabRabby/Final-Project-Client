@@ -71,7 +71,7 @@ const ApproveRiders = () => {
             </tr>
           </thead>
 
-          {/* Table Body */}
+          {/* Table Body here */}
           <tbody className="divide-y divide-lime-400/30">
             {riders.map((rider, i) => (
               <tr
@@ -92,6 +92,7 @@ const ApproveRiders = () => {
                       : "text-red-400"
                   }`}
                 >
+      
                   {rider.status}
                 </td>
 

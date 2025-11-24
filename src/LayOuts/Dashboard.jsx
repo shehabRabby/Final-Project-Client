@@ -38,7 +38,7 @@ const Dashboard = () => {
     </nav>
 
     {/* Page content */}
-    <div className="flex-1 p-4 bg-gray-900 text-white rounded-t-2xl shadow-inner">
+    <div className="flex-1 p-4 bg-gray-800 text-white rounded-t-2xl shadow-inner">
       <Outlet />
     </div>
   </div>
