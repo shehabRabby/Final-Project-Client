@@ -2,8 +2,10 @@ import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { FaMotorcycle, FaRegCreditCard, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
+import useRole from "../Hooks/useRole";
 
 const Dashboard = () => {
+  const { role } = useRole();
   return (
     <div className="drawer lg:drawer-open max-w-7xl mx-auto bg-black px-4">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -90,25 +92,30 @@ const Dashboard = () => {
                 <span>Payment History</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/dashboard/approve-riders"
-                className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
-              >
-                <FaMotorcycle size={30} className="text-green-400" />
-                <span>Approve Riders</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/users-management"
-                data-tip="Users Management"
-                className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
-              >
-                <FaUsers size={30} className="text-green-400" />
-                <span></span>
-              </NavLink>
-            </li>
+
+            {role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/approve-riders"
+                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
+                  >
+                    <FaMotorcycle size={30} className="text-green-400" />
+                    <span>Approve Riders</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/users-management"
+                    data-tip="Users Management"
+                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
+                  >
+                    <FaUsers size={30} className="text-green-400" />
+                    <span>Users Management</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* Settings */}
             <li>

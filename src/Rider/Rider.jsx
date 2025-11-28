@@ -27,16 +27,24 @@ const Rider = () => {
   const riderRegion = useWatch({ control, name: "region" });
 
   const handleRiderApplication = (data) => {
-    // console.log(data);
     axiosSecure.post("/riders", data).then((res) => {
       if (res.data.insertedId) {
         Swal.fire({
-          position: "center",
+          title: "Application Submitted 🎉",
+          text: "We’ll review your info and get back to you within 15 days.",
           icon: "success",
-          title:
-            "Your application has been submited. We will reach to you in 15 days",
-          showConfirmButton: false,
-          timer: 2000,
+          position: "center",
+          showConfirmButton: true,
+          confirmButtonText: "Okay ✨",
+
+          // aesthetics
+          background: "#1e1e1e",
+          color: "#fff",
+          confirmButtonColor: "#10B981",
+          customClass: {
+            popup: "rounded-2xl shadow-2xl backdrop-blur-lg",
+            title: "text-xl font-semibold",
+          },
         });
       }
     });

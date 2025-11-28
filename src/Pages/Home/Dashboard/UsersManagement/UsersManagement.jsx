@@ -17,31 +17,84 @@ const UsersManagement = () => {
 
   const handleMakeUser = (user) => {
     const roleInfo = { role: "admin" };
-    axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
-      if (res.data.modifiedCount) {
-        refetch();
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: `${user.displayName} Marked as an Admin`,
-          showConfirmButton: false,
-          timer: 2000,
+
+    Swal.fire({
+      title: "Promote to Admin?",
+      text: `Are you sure you wanna upgrade ${user.displayName}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yeah, go ahead ✨",
+      cancelButtonText: "Nah, cancel ❌",
+      reverseButtons: true,
+      background: "#1e1e1e",
+      color: "#fff",
+      confirmButtonColor: "#10B981",
+      cancelButtonColor: "#ef4444",
+      customClass: {
+        popup: "rounded-2xl shadow-2xl",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
+          if (res.data.modifiedCount) {
+            refetch();
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `${user.displayName} is now an Admin 🛡️`,
+              showConfirmButton: false,
+              timer: 1800,
+              background: "#111",
+              color: "#fff",
+              customClass: {
+                popup: "rounded-2xl shadow-xl backdrop-blur-lg",
+              },
+            });
+          }
         });
       }
     });
   };
 
+
   const handleRemoveAdmin = (user) => {
     const roleInfo = { role: "user" };
-    axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
-      if (res.data.modifiedCount) {
-        refetch();
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: `${user.displayName} removed from Admin`,
-          showConfirmButton: false,
-          timer: 2000,
+
+    Swal.fire({
+      title: "Remove Admin Privileges?",
+      text: `Do you really wanna downgrade ${user.displayName}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, remove 🔻",
+      cancelButtonText: "Cancel ❌",
+      reverseButtons: true,
+      background: "#1e1e1e",
+      color: "#fff",
+      confirmButtonColor: "#ef4444",
+      cancelButtonColor: "#10B981",
+      customClass: {
+        popup: "rounded-2xl shadow-2xl",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
+          if (res.data.modifiedCount) {
+            refetch();
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `${user.displayName} is no longer Admin 👋`,
+              showConfirmButton: false,
+              timer: 1800,
+              background: "#111",
+              color: "#fff",
+              customClass: {
+                popup: "rounded-2xl shadow-xl backdrop-blur-lg",
+              },
+            });
+          }
         });
       }
     });
@@ -50,8 +103,9 @@ const UsersManagement = () => {
   return (
     <div>
       <h2 className="text-4xl">Manage Users : {users.length}</h2>
-
+      
       <div className="overflow-x-auto">
+
         <table className="table">
           {/* head */}
           <thead>
@@ -67,7 +121,7 @@ const UsersManagement = () => {
           </thead>
           <tbody>
             {users.map((user, i) => (
-              <tr>
+              <tr key={i}>
                 <td>{i + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
@@ -75,7 +129,7 @@ const UsersManagement = () => {
                       <div className="mask mask-squircle h-12 w-12">
                         <img
                           src={user.photoURL}
-                          alt="Avatar Tailwind CSS Component"
+                          alt="Avatar"
                         />
                       </div>
                     </div>
