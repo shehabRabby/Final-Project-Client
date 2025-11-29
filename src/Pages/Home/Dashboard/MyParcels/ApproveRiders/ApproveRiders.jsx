@@ -17,51 +17,50 @@ const ApproveRiders = () => {
     },
   });
 
+  const updateRIderStatus = (rider, status) => {
+    const updateInfo = { status, email: rider.email };
 
-const updateRIderStatus = (rider, status) => {
-  const updateInfo = { status, email: rider.email };
+    Swal.fire({
+      title: `Change rider status to "${status}"?`,
+      text: `Do you want to update ${rider.name || rider.email}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, update ✔️",
+      cancelButtonText: "Cancel ❌",
+      reverseButtons: true,
 
-  Swal.fire({
-    title: `Change rider status to "${status}"?`,
-    text: `Do you want to update ${rider.name || rider.email}?`,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes, update ✔️",
-    cancelButtonText: "Cancel ❌",
-    reverseButtons: true,
+      // aesthetic theme
+      background: "#1e1e1e",
+      color: "#fff",
+      confirmButtonColor: "#10B981",
+      cancelButtonColor: "#ef4444",
+      customClass: {
+        popup: "rounded-2xl shadow-xl backdrop-blur-lg",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/riders/${rider._id}`, updateInfo).then((res) => {
+          if (res.data.modifiedCount) {
+            refetch();
 
-    // aesthetic theme
-    background: "#1e1e1e",
-    color: "#fff",
-    confirmButtonColor: "#10B981",
-    cancelButtonColor: "#ef4444",
-    customClass: {
-      popup: "rounded-2xl shadow-xl backdrop-blur-lg",
-    },
-  }).then((result) => {
-    if (result.isConfirmed) {
-      axiosSecure.patch(`/riders/${rider._id}`, updateInfo).then((res) => {
-        if (res.data.modifiedCount) {
-          refetch();
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `Status updated to "${status}" 🚀`,
+              showConfirmButton: false,
+              timer: 1600,
 
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `Status updated to "${status}" 🚀`,
-            showConfirmButton: false,
-            timer: 1600,
-
-            background: "#111",
-            color: "#fff",
-            customClass: {
-              popup: "rounded-2xl shadow-xl backdrop-blur-lg",
-            },
-          });
-        }
-      });
-    }
-  });
-};
+              background: "#111",
+              color: "#fff",
+              customClass: {
+                popup: "rounded-2xl shadow-xl backdrop-blur-lg",
+              },
+            });
+          }
+        });
+      }
+    });
+  };
 
   const handleApproval = (rider) => {
     updateRIderStatus(rider, "approved");
@@ -87,8 +86,8 @@ const updateRIderStatus = (rider, status) => {
                 "Name",
                 "District",
                 "Bike",
-                "Email",
-                "Status",
+                "Application Status",
+                "Work Status",
                 "Actions",
               ].map((head, idx) => (
                 <th
@@ -112,7 +111,6 @@ const updateRIderStatus = (rider, status) => {
                 <td className="px-4 py-2 font-medium">{rider.name}</td>
                 <td className="px-4 py-2">{rider.district}</td>
                 <td className="px-4 py-2">{rider.bike}</td>
-                <td className="px-4 py-2">{rider.email}</td>
                 <td
                   className={`px-4 py-2 font-semibold ${
                     rider.status === "approved"
@@ -122,9 +120,9 @@ const updateRIderStatus = (rider, status) => {
                       : "text-red-400"
                   }`}
                 >
-      
                   {rider.status}
                 </td>
+                <td className="px-4 py-2">{rider.workStatus}</td>
 
                 {/* Actions */}
                 <td className="px-4 py-2 flex gap-2">
