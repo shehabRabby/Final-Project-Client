@@ -9,9 +9,9 @@ const UsersManagement = () => {
   const axiosSecure = useAxiosSecure();
   const [searchText, setSearchText] = useState("");
   const { refetch, data: users = [] } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["users", searchText],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users`);
+      const res = await axiosSecure.get(`/users?searchText=${searchText}`);
       return res.data;
     },
   });
