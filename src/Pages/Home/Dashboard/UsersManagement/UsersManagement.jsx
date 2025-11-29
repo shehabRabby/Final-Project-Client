@@ -16,6 +16,8 @@ const UsersManagement = () => {
     },
   });
 
+  
+
   const handleMakeAdmin = (user) => {
     const roleInfo = { role: "admin" };
 
