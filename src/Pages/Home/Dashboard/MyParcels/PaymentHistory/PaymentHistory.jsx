@@ -39,7 +39,7 @@ const PaymentHistory = () => {
                 No
               </th>
               <th className="px-6 py-4 text-left font-semibold text-lime-300 uppercase tracking-wider">
-                Name
+                User Email
               </th>
               <th className="px-6 py-4 text-left font-semibold text-lime-300 uppercase tracking-wider">
                 Amount
@@ -64,12 +64,12 @@ const PaymentHistory = () => {
               >
                 <td className="px-6 py-4">{i + 1}</td>
                 <td className="px-6 py-4 font-medium">
-                  {payment?.name || "Unknown"}
+                  {payment?.customer_email || "Unknown"}
                 </td>
                 <td className="px-6 py-4 font-bold text-lime-400">
                   ${payment.amount}
                 </td>
-                <td className="px-6 py-4">{payment.transextionId}</td>
+                <td className="px-6 py-4">{payment.transactionId}</td>
                 <td className="px-6 py-4">
                   {new Date(payment.paidAt).toLocaleString()}
                 </td>

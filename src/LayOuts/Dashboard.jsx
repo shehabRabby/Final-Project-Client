@@ -2,6 +2,7 @@ import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { FaMotorcycle, FaRegCreditCard, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
+import { MdOutlineDirectionsBike } from "react-icons/md";
 import useRole from "../Hooks/useRole";
 
 const Dashboard = () => {
@@ -102,6 +103,16 @@ const Dashboard = () => {
                   >
                     <FaMotorcycle size={30} className="text-green-400" />
                     <span>Approve Riders</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/assign-riders"
+                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
+                  >
+                  
+                    <MdOutlineDirectionsBike size={30} className="text-green-400" />
+                    <span>Assign Riders</span>
                   </NavLink>
                 </li>
                 <li>
