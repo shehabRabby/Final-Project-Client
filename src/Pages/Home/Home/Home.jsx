@@ -9,10 +9,13 @@ import Question from "../Question/Question";
 import Brands from "./Brand/Brands";
 import Review from "../Reviews/Review";
 
+
+
 const reviewPromise = fetch("/reviews.json").then(res => res.json());
 const Home = () => {
   return (
     <div>
+
       <Banner></Banner>
       <HowWorks></HowWorks>
       <OuerServices></OuerServices>

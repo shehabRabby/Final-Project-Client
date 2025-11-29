@@ -15,7 +15,7 @@ const UsersManagement = () => {
     },
   });
 
-  const handleMakeUser = (user) => {
+  const handleMakeAdmin = (user) => {
     const roleInfo = { role: "admin" };
 
     Swal.fire({
@@ -35,7 +35,7 @@ const UsersManagement = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
+        axiosSecure.patch(`/users/${user._id}/role`, roleInfo).then((res) => {
           if (res.data.modifiedCount) {
             refetch();
 
@@ -57,7 +57,6 @@ const UsersManagement = () => {
     });
   };
 
-
   const handleRemoveAdmin = (user) => {
     const roleInfo = { role: "user" };
 
@@ -78,7 +77,7 @@ const UsersManagement = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
+        axiosSecure.patch(`/users/${user._id}/role`, roleInfo).then((res) => {
           if (res.data.modifiedCount) {
             refetch();
 
@@ -103,9 +102,8 @@ const UsersManagement = () => {
   return (
     <div>
       <h2 className="text-4xl">Manage Users : {users.length}</h2>
-      
-      <div className="overflow-x-auto">
 
+      <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
@@ -127,10 +125,7 @@ const UsersManagement = () => {
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src={user.photoURL}
-                          alt="Avatar"
-                        />
+                        <img src={user.photoURL} alt="Avatar" />
                       </div>
                     </div>
                     <div>
@@ -150,7 +145,7 @@ const UsersManagement = () => {
                     </button>
                   ) : (
                     <button
-                      onClick={() => handleMakeUser(user)}
+                      onClick={() => handleMakeAdmin(user)}
                       className="btn"
                     >
                       <FaUserShield></FaUserShield>
