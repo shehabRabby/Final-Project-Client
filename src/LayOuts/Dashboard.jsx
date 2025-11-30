@@ -4,6 +4,7 @@ import { FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers } from "react-icons/fa"
 import { Link, NavLink, Outlet } from "react-router";
 import { MdOutlineDirectionsBike } from "react-icons/md";
 import useRole from "../Hooks/useRole";
+import { IoCloudDoneSharp } from "react-icons/io5";
 
 const Dashboard = () => {
   const { role } = useRole();
@@ -103,6 +104,15 @@ const Dashboard = () => {
                   >
                     <FaTasks size={30} className="text-green-400" />
                     <span>Assigned Deliveries</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/compeleted-deliveries"
+                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
+                  >
+                    <IoCloudDoneSharp size={30} className="text-green-400" />
+                    <span>Compeleted Deliveries</span>
                   </NavLink>
                 </li>
               </>

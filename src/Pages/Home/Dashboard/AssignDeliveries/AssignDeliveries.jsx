@@ -17,8 +17,9 @@ const AssignDeliveries = () => {
     },
   });
 
-  const handleAcceptDelivery = (parcel) => {
-    const statusInfo = { deliveryStatus: "Rider_arriving" };
+  const handleDeliveryStatusUpdate = (parcel, status) => {
+    const statusInfo = { deliveryStatus: status };
+    let message = `Parcel Status is Update with ${status.split("_").join(" ")}`;
     axiosSecure
       .patch(`/parcels/${parcel._id}/status`, statusInfo)
       .then((res) => {
@@ -27,7 +28,7 @@ const AssignDeliveries = () => {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: `Thank You for Accpeting`,
+            title: message,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -58,7 +59,9 @@ const AssignDeliveries = () => {
                   {parcel.deliveryStatus === "driver_assigned" ? (
                     <>
                       <button
-                        onClick={() => handleAcceptDelivery(parcel)}
+                        onClick={() =>
+                          handleDeliveryStatusUpdate(parcel, "Rider_arriving")
+                        }
                         className="btn btn-primary text-black"
                       >
                         Accept
@@ -72,8 +75,25 @@ const AssignDeliveries = () => {
                     <span>Accepted</span>
                   )}
                 </td>
-                <td>Quality Control Specialist</td>
-              
+                <td>
+                  {" "}
+                  <button
+                    onClick={() =>
+                      handleDeliveryStatusUpdate(parcel, "parcel_picked_up")
+                    }
+                    className="btn btn-primary text-black"
+                  >
+                    Mark as PickUp
+                  </button>
+                  <button
+                    onClick={() =>
+                      handleDeliveryStatusUpdate(parcel, "parcel_devlivered")
+                    }
+                    className="btn btn-primary text-black ms-2"
+                  >
+                    Mark as Deliver
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
