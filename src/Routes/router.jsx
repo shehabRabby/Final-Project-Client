@@ -19,7 +19,8 @@ import UsersManagement from "../Pages/Home/Dashboard/UsersManagement/UsersManage
 import AdminRoute from "./AdminRoute";
 import About from "../Pages/About/About";
 import AssignRiders from "../Pages/Home/Dashboard/AssignRiders/AssignRiders";
-import RiderRoutes from "./RiderRoutes";
+import RiderRoute from "./RiderRoute";
+import AssignDeliveries from "../Pages/Home/Dashboard/AssignDeliveries/AssignDeliveries";
 
 export const router = createBrowserRouter([
   {
@@ -103,8 +104,8 @@ export const router = createBrowserRouter([
       },
       // rider only routes
       {
-        path: "assigned-delivires",
-        element: <RiderRoutes></RiderRoutes>,
+        path: "assigned-deliveries",
+        element: <RiderRoute><AssignDeliveries></AssignDeliveries></RiderRoute>,
       },
 
       //admin related routes
