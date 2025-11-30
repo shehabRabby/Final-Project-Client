@@ -8,7 +8,7 @@ const AssignRiders = () => {
   const axiosSecure = useAxiosSecure();
   const riderModalRef = useRef();
 
-  const { data: parcels = [], refetch: parcelRefetch } = useQuery({
+  const { data: parcels = [], refetch } = useQuery({
     queryKey: ["parcels", "pending-pickup"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -40,6 +40,7 @@ const AssignRiders = () => {
       riderEmail: rider.email,
       riderName: rider.name,
       parcelId: selectedParcel._id,
+      trackingId: selectedParcel.trackingId,
     };
 
     axiosSecure
@@ -47,7 +48,7 @@ const AssignRiders = () => {
       .then((res) => {
         if (res.data.modifiedCount) {
           riderModalRef.current.close();
-          parcelRefetch();
+          refetch();
           Swal.fire({
             position: "center",
             icon: "success",

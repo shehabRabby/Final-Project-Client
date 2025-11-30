@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 const CompeletedDeliveries = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: parcels = [], refetch } = useQuery({
+  const { data: parcels = [],} = useQuery({
     queryKey: ["parcels", user.email, "driver_assigned"],
     queryFn: async () => {
       const res = await axiosSecure.get(
