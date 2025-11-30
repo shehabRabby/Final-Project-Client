@@ -1,6 +1,6 @@
 import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { FaMotorcycle, FaRegCreditCard, FaUsers } from "react-icons/fa";
+import { FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 import { MdOutlineDirectionsBike } from "react-icons/md";
 import useRole from "../Hooks/useRole";
@@ -94,6 +94,21 @@ const Dashboard = () => {
               </NavLink>
             </li>
 
+            {role === "rider" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/assigned-deliveries"
+                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
+                  >
+                    <FaTasks size={30} className="text-green-400" />
+                    <span>Assigned Deliveries</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+
+            {/* admin only links  */}
             {role === "admin" && (
               <>
                 <li>
@@ -110,8 +125,10 @@ const Dashboard = () => {
                     to="/dashboard/assign-riders"
                     className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
                   >
-                  
-                    <MdOutlineDirectionsBike size={30} className="text-green-400" />
+                    <MdOutlineDirectionsBike
+                      size={30}
+                      className="text-green-400"
+                    />
                     <span>Assign Riders</span>
                   </NavLink>
                 </li>
