@@ -25,6 +25,7 @@ const MyParcels = () => {
       parcelId: parcel._id,
       senderEmail: parcel.senderEmail,
       parcelName: parcel.parcelName,
+      trackingId: parcel.trackingId,
     };
     const res = await axiosSecure.post(
       "/payment-checkout-session",
@@ -78,9 +79,9 @@ const MyParcels = () => {
                 "Name",
                 "Cost",
                 "Payment",
-                "Action",
-                "Delivery Status",
                 "Traking ID",
+                "Delivery Status",
+                "Action",
               ].map((head, idx) => (
                 <th
                   key={idx}
@@ -119,6 +120,14 @@ const MyParcels = () => {
                   )}
                 </td>
 
+                <td className="px-4 py-2 text-lime-300 font-semibold">
+                  <Link to={`/parcel-track/${parcel.trackingId}`}>
+                    {parcel.trackingId}
+                  </Link>
+                </td>
+                <td className="px-4 py-2 text-lime-300 font-semibold">
+                  {parcel.deliveryStatus}
+                </td>
 
                 {/* Action Buttons */}
                 <td className="px-4 py-2 flex gap-2">
@@ -134,13 +143,6 @@ const MyParcels = () => {
                   >
                     <FaTrashCan />
                   </button>
-                </td>
-
-                <td className="px-4 py-2 text-lime-300 font-semibold">
-                  {parcel.deliveryStatus}
-                </td>
-                <td className="px-4 py-2 text-lime-300 font-semibold">
-                  {parcel.trackingId}
                 </td>
               </tr>
             ))}
