@@ -4,6 +4,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin/SocialLogin";
 
+
 const Login = () => {
   const {
     register,
@@ -27,7 +28,7 @@ const Login = () => {
   };
 
   return (
-    <div className="card ml-12">
+    <div className="card ml-12 mt-10">
       <h3 className="text-3xl text-center">Welcome Back</h3>
       <h2 className="text-center">Please Login Here</h2>
       <form onSubmit={handleSubmit(handleLogin)} className="card-body">
@@ -37,7 +38,7 @@ const Login = () => {
           <input
             type="email"
             {...register("email", { required: true })}
-            className="input"
+            className="input w-full"
             placeholder="Email"
           />
           {errors.email?.type === "required" && (
@@ -50,7 +51,7 @@ const Login = () => {
           <input
             type="password"
             {...register("password", { required: true, minLength: 6 })}
-            className="input"
+            className="input w-full"
             placeholder="Password"
           />
           {errors.password?.type === "password" && (
@@ -74,6 +75,7 @@ const Login = () => {
         </p>
       </form>
       <SocialLogin></SocialLogin>
+
     </div>
   );
 };

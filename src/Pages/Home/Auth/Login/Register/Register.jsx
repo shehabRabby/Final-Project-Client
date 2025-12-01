@@ -68,7 +68,7 @@ const Register = () => {
 
   return (
     <div>
-      <h3 className="text-3xl text-center">Welcome to Zap Shift</h3>
+      <h3 className="text-3xl text-center ml-5 mt-8">Welcome to Zap Shift</h3>
       <h2 className="text-center">Register Here</h2>
       <form onSubmit={handleSubmit(handleRegisteration)} className="card-body">
         <fieldset className="fieldset">
@@ -77,7 +77,7 @@ const Register = () => {
           <input
             type="text"
             {...register("name", { required: true })}
-            className="input"
+            className="input w-full"
             placeholder="Enter name"
           />
           {errors.name?.type === "required" && (
@@ -89,7 +89,7 @@ const Register = () => {
           <input
             type="file"
             {...register("photo", { required: true })}
-            className="file-input"
+            className="file-input w-full"
             placeholder="Your Photo"
           />
           {errors.photo?.type === "required" && (
@@ -101,7 +101,7 @@ const Register = () => {
           <input
             type="email"
             {...register("email", { required: true })}
-            className="input"
+            className="input w-full"
             placeholder="Email"
           />
           {errors.email?.type === "required" && (
@@ -113,7 +113,7 @@ const Register = () => {
           <input
             type="password"
             {...register("password", { required: true, minLength: 6 })}
-            className="input"
+            className="input w-full"
             placeholder="Password"
           />
           {errors.password?.type === "password" && (
