@@ -15,19 +15,16 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="">Home</NavLink>
+        <NavLink to="">Services</NavLink>
       </li>
       <li>
-        <NavLink to="/coverage">Coverage</NavLink>
-      </li>
-      <li>
-        <NavLink to="/send-parcel">Send Parcel</NavLink>
+        <NavLink to="/send-parcel">Send a Parcel</NavLink>
       </li>
       <li>
         <NavLink to="/rider">Be a Rider</NavLink>
       </li>
       <li>
-        <NavLink to="about">About Us</NavLink>
+        <NavLink to="/coverage">Coverage Areas</NavLink>
       </li>
       {user && (
         <>
@@ -36,6 +33,9 @@ const Navbar = () => {
           </li>
         </>
       )}
+      <li>
+        <NavLink to="about">About Us</NavLink>
+      </li>
     </>
   );
   return (

@@ -17,8 +17,7 @@ const Coverage = () => {
     );
     if (district) {
       const coord = [district.latitude, district.longitude];
-    //   console.log(district, coord);
-      mapRef.current.flyTo(coord, 12);
+      mapRef.current.flyTo(coord, 13);
     }
   };
 
@@ -46,7 +45,7 @@ const Coverage = () => {
       <div className="w-full h-[400px] md:h-[600px] lg:h-[800px] mb-8 rounded-xl overflow-hidden shadow">
         <MapContainer
           center={position}
-          zoom={15}
+          zoom={13}
           scrollWheelZoom={false}
           className="h-full w-full"
           ref={mapRef}
