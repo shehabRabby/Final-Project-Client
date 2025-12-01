@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaMotorcycle } from "react-icons/fa6";
 import { MdCancel, MdPendingActions } from "react-icons/md";
+import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
 
 const AdminDashboardHome = () => {
   const axiosSecure = useAxiosSecure();
@@ -14,6 +15,13 @@ const AdminDashboardHome = () => {
       return res.data;
     },
   });
+
+  const getPieChartData = (data) => {
+    return data.map((item) => {
+      return { name: item.status, value: item.count };
+    });
+  };
+
   return (
     <div className="p-5">
       <h2 className="text-3xl font-semibold mb-6 text-white">
@@ -62,6 +70,56 @@ const AdminDashboardHome = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* Pie Chart Section */}
+      <div className="w-full flex justify-center items-center p-4">
+        <PieChart
+          width={400}
+          height={400}
+          style={{
+            width: "100%",
+            maxWidth: "450px",
+            height: "auto",
+          }}
+        >
+          {/* Pie Shape */}
+          <Pie
+            dataKey="value"
+            startAngle={180}
+            endAngle={0}
+            data={getPieChartData(deliveryStats)}
+            cx="50%"
+            cy="80%"
+            outerRadius="120%"
+            label
+            isAnimationActive={true}
+          >
+            {getPieChartData(deliveryStats).map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={["#4ade80", "#60a5fa", "#fbbf24", "#f87171"][index % 4]}
+              />
+            ))}
+          </Pie>
+
+          {/* Tooltip */}
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#1f29",
+              border: "1px solid #4b5563",
+              color: "white",
+            }}
+          />
+
+          {/* Legend */}
+          <Legend
+            wrapperStyle={{
+              color: "white",
+              paddingTop: "20px",
+            }}
+          />
+        </PieChart>
       </div>
     </div>
   );
