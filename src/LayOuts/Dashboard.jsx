@@ -1,10 +1,16 @@
 import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers } from "react-icons/fa";
+import {
+  FaMotorcycle,
+  FaRegCreditCard,
+  FaTasks,
+  FaUsers,
+} from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 import { MdOutlineDirectionsBike } from "react-icons/md";
 import useRole from "../Hooks/useRole";
 import { IoCloudDoneSharp } from "react-icons/io5";
+import logoImg from "../assets/logo.png";
 
 const Dashboard = () => {
   const { role } = useRole();
@@ -54,8 +60,11 @@ const Dashboard = () => {
           <ul className="menu p-4 w-full space-y-2">
             {/* Home */}
             <li>
+             <Link to='/'><img src={logoImg} alt="logo" /></Link>
+            </li>
+            <li>
               <Link
-                to="/"
+                to="/dashboard"
                 className="flex items-center gap-3 p-2 rounded-lg hover:bg-lime-500/20 transition-colors text-lime-300"
               >
                 <svg
